@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline of Humanitarian, Ceasefire, and Reconstruction Efforts in Gaza</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3652/3652191.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        /* Responsive table */
+        @media (max-width: 600px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                background-color: #fff;
+                border-radius: 8px;
+                padding: 12px;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #ddd;
+                padding: 12px;
+                position: relative;
+                text-align: left;
+                padding-left: 50%;
+                min-height: 44px;
+            }
+
+            td:before {
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: 500;
+                content: attr(data-label);
+            }
+        }
+
+        /* Button style */
+        .btn-add-calendar {
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-add-calendar:hover {
+            background-color: #005a9e;
+        }
+
+        /* Favicon style */
+        link[rel="icon"] {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Timeline of Humanitarian, Ceasefire, and Reconstruction Efforts in Gaza</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Key Actions & Events</th>
+                <th>Add to Calendar</th>
+            </tr>
+        </thead>
+        <tbody id="timeline-table">
+            <!-- Table data will be populated here using JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        const events = [
+            {
+                phase: "Humanitarian and Reconstruction Efforts",
+                description: "Rehabilitation of infrastructure (electricity, water, sanitation, communications, and roads) begins and continues.",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Humanitarian and Reconstruction Efforts&body=Rehabilitation of infrastructure (electricity, water, sanitation, communications, and roads) begins and continues."
+            },
+            {
+                phase: "Ceasefire Begins",
+                description: "Temporary suspension of mutual military operations begins. Israeli forces withdraw eastward.",
+                date: "D1, Jan 19",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Ceasefire Begins&body=Temporary suspension of mutual military operations begins. Israeli forces withdraw eastward."
+            },
+            {
+                phase: "Day 16",
+                description: "Indirect negotiations between Israel and Hamas begin to discuss the second phase of the agreement.",
+                date: "Feb 09",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Indirect Negotiations&body=Indirect negotiations between Israel and Hamas begin to discuss the second phase of the agreement."
+            },
+            {
+                phase: "Week 6, Day 42",
+                description: "All remaining civilian prisoners included in the first phase are released by Hamas.",
+                date: "Jan 25",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Week 6, Day 42&body=All remaining civilian prisoners included in the first phase are released by Hamas."
+            },
+            {
+                phase: "D1, January 19",
+                description: "Guarantors (Qatar, Egypt, and the United States) oversee the implementation of the agreement.",
+                date: "Jan 19",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=D1, January 19&body=Guarantors (Qatar, Egypt, and the United States) oversee the implementation of the agreement."
+            },
+            {
+                phase: "January 25",
+                description: "Weekly Releases (Starting Day 7) Every seven days, Hamas releases 3 additional Israeli prisoners.",
+                date: "Jan 25",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=January 25&body=Weekly Releases (Starting Day 7) Every seven days, Hamas releases 3 additional Israeli prisoners."
+            },
+            {
+                phase: "Day 7",
+                description: "Israeli forces completely withdraw from Al-Rashid Street eastward to Salah Al-Din Street, dismantling military sites.",
+                date: "Feb 09",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Day 7&body=Israeli forces completely withdraw from Al-Rashid Street eastward to Salah Al-Din Street, dismantling military sites."
+            },
+            {
+                phase: "Day 22",
+                description: "Israeli forces withdraw from central Gaza (Netsarim Junction and Kuwait Square) east of Salah Al-Din Street.",
+                date: "Mar 01",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Day 22&body=Israeli forces withdraw from central Gaza (Netsarim Junction and Kuwait Square) east of Salah Al-Din Street."
+            },
+            {
+                phase: "March 01",
+                description: "Exchange of bodies and remains between the two parties begins.",
+                date: "Mar 01",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=March 01&body=Exchange of bodies and remains between the two parties begins."
+            },
+            {
+                phase: "From March 02",
+                description: "A 3 to 5-year reconstruction plan for Gaza is implemented.",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=From March 02&body=A 3 to 5-year reconstruction plan for Gaza is implemented."
+            }
+        ];
+
+        const tableBody = document.querySelector('#timeline-table');
+
+        events.forEach(event => {
+            const row = tableBody.insertRow();
+            const phaseCell = row.insertCell(0);
+            const descriptionCell = row.insertCell(1);
+            const calendarCell = row.insertCell(2);
+
+            phaseCell.textContent = event.phase;
+            descriptionCell.textContent = event.description;
+
+            const calendarButton = document.createElement('button');
+            calendarButton.className = 'btn btn-primary btn-add-calendar';
+            calendarButton.textContent = 'Add to Calendar';
+            calendarButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.open(event.calendarLink, '_blank');
+            });
+            calendarCell.appendChild(calendarButton);
+        });
+    </script>
+
+</body>
+
+</html>
