@@ -107,6 +107,7 @@
             <tr>
                 <th>Phase</th>
                 <th>Key Actions & Events</th>
+                <th>Date</th>
                 <th>Add to Calendar</th>
             </tr>
         </thead>
@@ -118,62 +119,58 @@
     <script>
         const events = [
             {
-                phase: "Humanitarian and Reconstruction Efforts",
-                description: "Rehabilitation of infrastructure (electricity, water, sanitation, communications, and roads) begins and continues.",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Humanitarian and Reconstruction Efforts&body=Rehabilitation of infrastructure (electricity, water, sanitation, communications, and roads) begins and continues."
-            },
-            {
                 phase: "Ceasefire Begins",
                 description: "Temporary suspension of mutual military operations begins. Israeli forces withdraw eastward.",
-                date: "D1, Jan 19",
+                date: "Jan 19, 12:00 AM",
                 calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Ceasefire Begins&body=Temporary suspension of mutual military operations begins. Israeli forces withdraw eastward."
             },
             {
-                phase: "Day 16",
+                phase: "Indirect Negotiations",
                 description: "Indirect negotiations between Israel and Hamas begin to discuss the second phase of the agreement.",
-                date: "Feb 09",
+                date: "Feb 9",
                 calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Indirect Negotiations&body=Indirect negotiations between Israel and Hamas begin to discuss the second phase of the agreement."
             },
             {
-                phase: "Week 6, Day 42",
+                phase: "Release of Civilian Prisoners",
                 description: "All remaining civilian prisoners included in the first phase are released by Hamas.",
                 date: "Jan 25",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Week 6, Day 42&body=All remaining civilian prisoners included in the first phase are released by Hamas."
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Release of Civilian Prisoners&body=All remaining civilian prisoners included in the first phase are released by Hamas."
             },
             {
-                phase: "D1, January 19",
+                phase: "Guarantors' Oversight",
                 description: "Guarantors (Qatar, Egypt, and the United States) oversee the implementation of the agreement.",
-                date: "Jan 19",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=D1, January 19&body=Guarantors (Qatar, Egypt, and the United States) oversee the implementation of the agreement."
+                date: "Jan 19, 12:00 AM",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Guarantors' Oversight&body=Guarantors (Qatar, Egypt, and the United States) oversee the implementation of the agreement."
             },
             {
-                phase: "January 25",
+                phase: "Weekly Prisoner Releases",
                 description: "Weekly Releases (Starting Day 7) Every seven days, Hamas releases 3 additional Israeli prisoners.",
                 date: "Jan 25",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=January 25&body=Weekly Releases (Starting Day 7) Every seven days, Hamas releases 3 additional Israeli prisoners."
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Weekly Prisoner Releases&body=Weekly Releases (Starting Day 7) Every seven days, Hamas releases 3 additional Israeli prisoners."
             },
             {
-                phase: "Day 7",
+                phase: "Israeli Forces Withdrawal",
                 description: "Israeli forces completely withdraw from Al-Rashid Street eastward to Salah Al-Din Street, dismantling military sites.",
-                date: "Feb 09",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Day 7&body=Israeli forces completely withdraw from Al-Rashid Street eastward to Salah Al-Din Street, dismantling military sites."
+                date: "Feb 9",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Israeli Forces Withdrawal&body=Israeli forces completely withdraw from Al-Rashid Street eastward to Salah Al-Din Street, dismantling military sites."
             },
             {
-                phase: "Day 22",
+                phase: "Withdrawal from Central Gaza",
                 description: "Israeli forces withdraw from central Gaza (Netsarim Junction and Kuwait Square) east of Salah Al-Din Street.",
-                date: "Mar 01",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Day 22&body=Israeli forces withdraw from central Gaza (Netsarim Junction and Kuwait Square) east of Salah Al-Din Street."
+                date: "Mar 1",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Withdrawal from Central Gaza&body=Israeli forces withdraw from central Gaza (Netsarim Junction and Kuwait Square) east of Salah Al-Din Street."
             },
             {
-                phase: "March 01",
+                phase: "Exchange of Bodies",
                 description: "Exchange of bodies and remains between the two parties begins.",
-                date: "Mar 01",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=March 01&body=Exchange of bodies and remains between the two parties begins."
+                date: "Mar 1",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Exchange of Bodies&body=Exchange of bodies and remains between the two parties begins."
             },
             {
-                phase: "From March 02",
+                phase: "Reconstruction Plan",
                 description: "A 3 to 5-year reconstruction plan for Gaza is implemented.",
-                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=From March 02&body=A 3 to 5-year reconstruction plan for Gaza is implemented."
+                date: "Starting from Mar 2",
+                calendarLink: "https://outlook.office.com/calendar/action/compose?subject=Reconstruction Plan&body=A 3 to 5-year reconstruction plan for Gaza is implemented."
             }
         ];
 
@@ -183,17 +180,28 @@
             const row = tableBody.insertRow();
             const phaseCell = row.insertCell(0);
             const descriptionCell = row.insertCell(1);
-            const calendarCell = row.insertCell(2);
+            const dateCell = row.insertCell(2);
+            const calendarCell = row.insertCell(3);
 
             phaseCell.textContent = event.phase;
             descriptionCell.textContent = event.description;
+            dateCell.textContent = event.date;
 
             const calendarButton = document.createElement('button');
             calendarButton.className = 'btn btn-primary btn-add-calendar';
             calendarButton.textContent = 'Add to Calendar';
             calendarButton.addEventListener('click', function (e) {
                 e.preventDefault();
-                window.open(event.calendarLink, '_blank');
+                const date = new Date(event.date === "Ongoing" ? "2025-01-19T00:00:00" : event.date);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const hours = 12; // Standard hour for consistency across all dates
+                const minutes = 0;
+                const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}T${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:00`;
+
+                const calendarLink = `https://outlook.office.com/calendar/action/compose?subject=${event.phase}&body=${event.description}&startdt=${formattedDate}&enddt=${formattedDate}`;
+                window.open(calendarLink, '_blank');
             });
             calendarCell.appendChild(calendarButton);
         });
